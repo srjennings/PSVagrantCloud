@@ -1,7 +1,7 @@
 $manifest = @{
     Path            = '.\PSVagrantCloud.psd1'
     RootModule      = '.\PSVagrantCloud.psm1'
-    Author          = 'Steve Jennings <steven@automatingops.com>>'
+    Author          = 'Steve Jennings <steven@automatingops.com>'
     ModuleVersion   = '1.0'
     FunctionsToExport  = @(
         'Find-VagrantCloudBox',
