@@ -37,5 +37,6 @@ Use this module to find, create, update all types of objects from the Vagrant Cl
 Feel free to open an issue or contribute!
 
 ### To-Do
+* Add functionality to [upload new providers](https://www.vagrantup.com/docs/vagrant-cloud/api.html#update-a-provider). In the interest of time, and lack of personal need, this functionality is not yet added.
 * Format errors a bit better.
 * Incorporate more uses of the pipeline
