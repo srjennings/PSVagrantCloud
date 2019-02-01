@@ -27,6 +27,13 @@ git clone https://github.com/deyjcode/PSVagrantCloud.git
 
 3. Import the module with `Import-Module`
 
+## Issues with Installation
+Error: `Package 'PSVagrantCloud' failed to be installed because: End of Central Directory
+record could not be found.`
+This issue occurs because of a hash mismatch from PSGallery. This is a known issue from [PSGallery](https://github.com/PowerShell/PowerShellGallery/blob/master/psgallery_status.md#10242018---some-downloads-failing-with-end-of-central-directory-record-could-not-be-found).
+
+Use the **Alternate Installation** above as a workaround.
+
 ### Documentation
 All module documentation can be found in the built-in help. As well, in this repository, one can find markdown generated help from PlatyPS to quickly find what you are looking for.
 
