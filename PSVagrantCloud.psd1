@@ -21,13 +21,13 @@ ModuleVersion = '1.0'
 GUID = '234da819-2df7-4f9c-9ffd-f8f38b86f286'
 
 # Author of this module
-Author = 'Steve Jennings <steven@automatingops.com>>'
+Author = 'Steve Jennings <steven@automatingops.com>'
 
 # Company or vendor of this module
 CompanyName = 'Unknown'
 
 # Copyright statement for this module
-Copyright = '(c) Steve Jennings <steven@automatingops.com>>. All rights reserved.'
+Copyright = '(c) Steve Jennings <steven@automatingops.com>. All rights reserved.'
 
 # Description of the functionality provided by this module
 # Description = ''
