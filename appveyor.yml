@@ -14,7 +14,10 @@ only_commits:
 build: "off"
 
 test_script:
-  - ps: . .\build.ps1
+  - ps: . .\build.ps1 -task test
 
 build_script:
   - ps: . .\build.ps1 -task build
+
+deploy_script:
+  - ps: . .\build.ps1 -task deploy
