@@ -1,3 +1,4 @@
+Function Invoke-VagrantCloudLocalToken {
 <#
 .SYNOPSIS
 Grabs an API token from the local machine used for Vagrant Cloud.
@@ -29,7 +30,6 @@ Author: Steven Jennings <steven@automatingops.com>
 
 Github: https://github.com/deyjcode/PSVagrantCloud
 #>
-Function Invoke-VagrantCloudLocalToken {
     [CmdletBinding()]
     param (
 
