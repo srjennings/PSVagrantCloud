@@ -2,7 +2,7 @@ environment:
   galleryapi:
     secure: PUx8yUU/itCarqcVAN+dxD9n0UnG9OqGawirsOfrEDj0B3TRcLSH27XWKTD/5pfG
 
-#os: WMF 5
+image: Visual Studio 2017
 
 skip_commits:
   files:
@@ -14,10 +14,4 @@ only_commits:
 build: "off"
 
 test_script:
-  - ps: . .\build.ps1 -task test
-
-build_script:
-  - ps: . .\build.ps1 -task build
-
-deploy_script:
-  - ps: . .\build.ps1 -task deploy
+  - ps: . .\build.ps1 -Task Deploy
