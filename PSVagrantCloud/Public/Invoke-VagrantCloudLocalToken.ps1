@@ -78,5 +78,3 @@ Function Invoke-VagrantCloudLocalToken {
 
     return $TokenObject
 }
-
-Invoke-VagrantCloudLocalToken
