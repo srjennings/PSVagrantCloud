@@ -1,0 +1,17 @@
+environment:
+  galleryapi:
+    secure: PUx8yUU/itCarqcVAN+dxD9n0UnG9OqGawirsOfrEDj0B3TRcLSH27XWKTD/5pfG
+
+#os: WMF 5
+
+skip_commits:
+  files:
+    - readme.*
+
+only_commits:
+  message: /build/
+
+build: "off"
+
+test_script:
+  - ps: . .\build.ps1
