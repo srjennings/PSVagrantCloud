@@ -24,6 +24,13 @@ $manifest = @{
         'Set-VagrantCloudBoxVersion',
         'Invoke-VagrantCloudLocalToken'
     )
+    Tags = @(
+        'Vagrant',
+        'Cloud',
+        'API',
+        'VirtualBox',
+        'Packer'
+    )
 }
 
 [array]::sort($manifest.FunctionsToExport)
