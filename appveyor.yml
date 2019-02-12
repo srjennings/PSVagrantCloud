@@ -14,4 +14,4 @@ only_commits:
 build: "off"
 
 test_script:
-  - ps: . .\build.ps1 -Task Deploy
+  - ps: . .\build.ps1
