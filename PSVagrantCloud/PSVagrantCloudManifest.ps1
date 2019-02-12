@@ -21,7 +21,8 @@ $manifest = @{
         'Remove-VagrantCloudProvider',
         'Set-VagrantCloudBox',
         'Set-VagrantCloudBoxProvider',
-        'Set-VagrantCloudBoxVersion'
+        'Set-VagrantCloudBoxVersion',
+        'Invoke-VagrantCloudLocalToken'
     )
 }
 
