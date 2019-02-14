@@ -35,6 +35,8 @@ Github: https://github.com/deyjcode/PSVagrantCloud
 
     )
     Begin {
+
+$LinuxRootPath = "/etc/environment"
         Function Request-Restart {
             $AskRestartQuestion = Read-Host -Prompt "Would you like to reboot? [Y/n]"
             switch ($AskRestartQuestion) {
@@ -82,13 +84,18 @@ Github: https://github.com/deyjcode/PSVagrantCloud
                                     }
                                     $false {
                                         if ($IsLinux) {
+                                            $TrimmedToken = ($TokenDescription.Token).Trim()
+$LinuxExport = @"
+export $TokenName=`"$TrimmedToken"`
+"@
                                             Write-Verbose "Linux Detected..."
                                             if ((id -u) -eq '0') {
                                                 Write-Warning "Running as sudo or root!"
-                                                Write-Warning "It is recommended to run as a normal user, and preserve the variables using: 'sudo -E pwsh' as a matter of security"
                                                 try {
-                                                    Add-Content -Path ~/.bash_profile -Value "export $TokenName='"$($TokenDescription.token)"'" -ErrorAction Stop
-                                                    Write-Warning "Restart PowerShell to apply the token changes."
+                                                    Write-Verbose "Writing $LinuxExport to $LinuxRootPath"
+                                                    Add-Content -Path $LinuxRootPath -Value $LinuxExport -ErrorAction Stop
+                                                    Write-Warning "It is recommended to reboot the system to ensure system variables are set!"
+                                                    Request-Restart
                                                 }
                                                 catch {
                                                     $ErrorMessage = $_.Exception.Message
@@ -96,8 +103,9 @@ Github: https://github.com/deyjcode/PSVagrantCloud
                                                 }
                                             }
                                             else {
-                                                Write-Host "Writing to non-sudo ~/.bash_profile"
-                                                Add-Content -Path ~/.bash_profile -Value "export $TokenName='"$($TokenDescription.token)"'"
+                                                Write-Warning "Running with unprivileged credentials!"
+                                                Write-Host "Copy the following line and paste inside ~/.bash_profile:"
+                                                Write-Host $LinuxExport
                                             }
                                         }
                                         # TODO: Add MacOS
