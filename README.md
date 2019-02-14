@@ -1,10 +1,10 @@
-# PSVagrantCloud 
+# PSVagrantCloud
 PSVagrantCloud provides a way to interface with the Vagrant Cloud api through PowerShell.
 
 ### Prerequisites to get started
 * A Vagrant Cloud Account
     * Create one here: https://app.vagrantup.com/account/new
-* Supported Editions of PowerShell: 
+* Supported Editions of PowerShell:
     * Windows
     * Core
 
@@ -41,3 +41,4 @@ Feel free to open an issue or contribute!
 * Format errors a bit better.
 * Incorporate more uses of the pipeline
 * Further testing on Linux
+* Add More Pester Tests
