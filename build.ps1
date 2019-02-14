@@ -1,13 +1,36 @@
-param ($Task = 'Default')
+[cmdletbinding()]
+param (
+    [string]$Task = 'Default',
+    [ValidateSet("Minor","Major","Patch")]
+    [string]$ModuleVersion = 'Patch' # We default to Patch just in case
+)
 
-# Grab nuget bits, install modules, set build variables, start build.
+$global:ModuleVersionType = $ModuleVersion
+
+Write-Output "
+** ---Build Task '$Task' Starting--- **
+"
+
+Write-Output "Installing Dependencies for Build"
+# Install dependencies
 Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
+Install-Module InvokeBuild, PSDeploy, BuildHelpers, PSScriptAnalyzer, PlatyPS -force -Scope CurrentUser
+Install-Module Pester, PowerShellGet -Force -SkipPublisherCheck -Scope CurrentUser -AllowClobber
 
-Install-Module Psake, PSDeploy, BuildHelpers -force
-Install-Module Pester -Force
-Import-Module Psake, BuildHelpers
+Write-Output "Importing Dependencies for Build"
+# Import Modules
+Import-Module InvokeBuild, BuildHelpers, PSScriptAnalyzer
 
-Set-BuildEnvironment
+Write-Output "Setting Build Parameters"
+Set-BuildEnvironment -Force
 
-Invoke-psake -buildFile .\psake.ps1 -taskList $Task -nologo
-exit ( [int]( -not $psake.build_success ) )
+Write-Output "Beginning Invoke-Build Sequence"
+# Invoke-Build will now start looking to the module build file for tasks
+Invoke-Build $Task -Result Result
+
+if ($Result.Error){
+    exit 1
+}
+else {
+    exit 0
+}
