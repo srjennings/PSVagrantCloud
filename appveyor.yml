@@ -18,4 +18,3 @@ test_script:
 
 after_test:
   - ps: . .\build.ps1 -task Clean
-  - ps: . .\build.ps1 -task CreateDocs
