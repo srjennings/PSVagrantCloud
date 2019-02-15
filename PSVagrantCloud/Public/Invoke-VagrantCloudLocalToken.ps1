@@ -85,9 +85,7 @@ $LinuxRootPath = "/etc/environment"
                                     $false {
                                         if ($IsLinux) {
                                             $TrimmedToken = ($TokenDescription.Token).Trim()
-$LinuxExport = @"
-export $TokenName=`"$TrimmedToken"`
-"@
+                                            $LinuxExport = "export $TokenName=`"$TrimmedToken`""
                                             Write-Verbose "Linux Detected..."
                                             if ((id -u) -eq '0') {
                                                 Write-Warning "Running as sudo or root!"
