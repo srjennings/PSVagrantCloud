@@ -32,7 +32,7 @@ Task Default Clean, Build, Pester, UpdateSource, Publish
 Task Build CopyToOutputFolder, BuildPSM1, BuildPSD1
 Task Local Build, Pester, UpdateSource
 Task Pester Build, Tests
-Task CreateDocs Build, ImportModule, CreateMarkdownHelp, CreateExternalHelp
+Task CreateDocs Pester, ImportModule, CreateMarkdownHelp, CreateExternalHelp, UpdateSource
 
 #function TaskX($Name, $Parameters) {task $Name @Parameters -Source $MyInvocation}
 
