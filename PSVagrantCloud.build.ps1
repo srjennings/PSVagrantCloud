@@ -28,7 +28,7 @@ $Script:HelpRoot = Join-Path -Path $Output -ChildPath 'docs'
 $Script:Repository = "PSGallery"
 $Script:GalleryVersionFile = Join-Path -Path $Script:Output -ChildPath 'GalleryVersion.xml'
 
-Task Default Clean, Build, Pester, UpdateSource, Publish
+Task Default Clean, Build, Pester, CreateDocs, UpdateSource, Publish
 Task Build CopyToOutputFolder, BuildPSM1, BuildPSD1
 Task Local Build, Pester, UpdateSource
 Task Pester Build, Tests
