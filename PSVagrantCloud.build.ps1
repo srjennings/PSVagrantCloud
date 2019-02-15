@@ -66,26 +66,30 @@ Task CopyToOutputFolder {
 
 }
 
-# Synopsis: Builds .psm1 file
+# Synopsis: Builds .psm1 file by dot-sourcing the .ps1 files as functions
 Task BuildPSM1 {
     [System.Text.StringBuilder]$StringBuilder = [System.Text.StringBuilder]::new()
+    [void]$StringBuilder.AppendLine("# This file is generated with Invoke-Build...")
     foreach ($folder in $Script:Imports)
     {
         [void]$StringBuilder.AppendLine("Write-Verbose `"Importing from [`$PSScriptRoot\$folder]`"")
         if (Test-Path "$Script:Source\$folder")
         {
             $fileList = Get-ChildItem "$Script:Source\$folder" -Filter '*.ps1'
-            foreach ($file in $fileList)
+            Write-Output "  Grabbing Function Files from $folder"
+            foreach ($function in $fileList)
             {
-                $importName = "$folder\$($file.Name)"
-                Write-Output "  Found $importName"
+                $importName = "$folder\$($function.Name)"
+                Write-Output "  Found File $importName"
                 [void]$StringBuilder.AppendLine( ". `"`$PSScriptRoot\$importName`"")
             }
         }
     }
 
-    [void]$StringBuilder.AppendLine("`$publicFunctions = (Get-ChildItem -Path `"`$PSScriptRoot\Public`" -Filter '*.ps1').BaseName")
-    [void]$StringBuilder.AppendLine("Export-ModuleMember -Function `$publicFunctions")
+    [void]$StringBuilder.AppendLine("")
+
+    [void]$StringBuilder.AppendLine("`$PublicFunctions = (Get-ChildItem -Path `"`$PSScriptRoot\Public`" -Filter '*.ps1').BaseName")
+    [void]$StringBuilder.AppendLine("Export-ModuleMember -Function `$PublicFunctions")
 
     Write-Output "  Creating module file [$Script:ModulePath]"
     Set-Content -Path $Script:ModulePath -Value $stringbuilder.ToString()
