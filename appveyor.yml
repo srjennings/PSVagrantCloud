@@ -9,9 +9,13 @@ skip_commits:
     - readme.*
 
 only_commits:
-  message: /build/
+  message: /!publish/
 
 build: "off"
 
 test_script:
   - ps: . .\build.ps1 -task Pester
+
+after_test:
+  - ps: . .\build.ps1 -task Clean
+  - ps: . .\build.ps1 -task CreateDocs
